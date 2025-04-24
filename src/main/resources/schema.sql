@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS oauth (
+    userName VARCHAR(250) NOT NULL,
+    password VARCHAR(250) NOT NULL,
+    )
