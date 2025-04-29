@@ -18,7 +18,6 @@ public class Role {
     @ManyToOne
     private User user;
 
-
     public Long getRoleId() {
         return roleId;
     }
