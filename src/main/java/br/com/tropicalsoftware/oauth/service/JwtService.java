@@ -25,7 +25,7 @@ public class JwtService {
         long expiry = 3006L;
 
        String scopes = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
-               .collect(Collectors.joining(""));
+               .collect(Collectors.joining(","));
 
        var claims = JwtClaimsSet.builder().issuer("spring-security")
                .issuedAt(now)
