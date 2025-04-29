@@ -1,59 +1,40 @@
 package br.com.tropicalsoftware.oauth.entities;
 
-import jakarta.persistence.*;
-
-import java.util.Set;
-import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id")
-    private UUID userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    private String userName;
 
-    @Column(unique = true, nullable = false)
-    private String email;
-
-    @Column(nullable = false)
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles;
-
-
-    public UUID getUserId() {
-        return userId;
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public Long getId() {
+        return id;
     }
 
-    public String getUsername() {
-        return username;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -62,13 +43,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }
